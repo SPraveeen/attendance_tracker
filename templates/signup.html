@@ -6,24 +6,20 @@
         <div class="card shadow-sm">
             <div class="card-body">
                 <h2 class="card-title text-center mb-4">Sign Up</h2>
-                <form method="POST" action="/signup">
-                    <div class="mb-3">
-                        <label for="username" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="username" name="username" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="role" class="form-label">Role</label>
-                        <select class="form-select" id="role" name="role">
-                            <option value="user">User</option>
-                            <option value="admin">Admin</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary w-100">Sign Up</button>
-                </form>
+                        <form method="POST" action="/signup">
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Username</label>
+                                <input type="text" class="form-control" id="username" name="username" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" name="password" required>
+                            </div>
+                            <div class="mb-3">
+                                <span class="form-text">All new accounts are created as <b>User</b>. Only one Admin exists.</span>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+                        </form>
                 <div class="mt-3 text-center">
                     <span>Already have an account? <a href="/login">Login</a></span>
                 </div>

@@ -27,7 +27,8 @@ def signup():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        role = request.form['role']
+        # Always assign 'user' role for new signups
+        role = 'user'
         existing_user = User.query.filter_by(username=username).first()
         if existing_user:
             flash('Username already exists!')
@@ -61,7 +62,9 @@ def login():
         else:
             flash('Invalid credentials or role!')
             return redirect(url_for('login'))
-    return render_template('login.html')
+    # Only show admin option if admin exists, else allow admin login for first user
+    admin_exists = User.query.filter_by(role='admin').first() is not None
+    return render_template('login.html', admin_existsss=admin_exists)
 
 
 # Admin dashboard
@@ -92,4 +95,9 @@ def logout():
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
+        # Ensure only one admin exists, create default admin if none
+        if not User.query.filter_by(role='admin').first():
+            admin_user = User(username='admin', password=generate_password_hash('admin123'), role='admin')
+            db.session.add(admin_user)
+            db.session.commit()
     app.run(debug=True)
