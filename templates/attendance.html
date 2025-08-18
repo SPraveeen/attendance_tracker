@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}Attendance - Attendance Tracker{% endblock %}
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/user">User Dashboard</a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="/user/attendance">Attendance</a></li>
+        <li class="nav-item"><a class="nav-link" href="/user/break">Breaks</a></li>
+        <li class="nav-item"><a class="nav-link" href="/user/photos">My Photos</a></li>
+        <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <h2>Attendance</h2>
+  <form method="POST" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label for="photo" class="form-label">Upload a photo for verification</label>
+      <input class="form-control" type="file" id="photo" name="photo" accept="image/*" required>
+    </div>
+    <button type="submit" name="action" value="start" class="btn btn-success">Start Day</button>
+    <button type="submit" name="action" value="end" class="btn btn-danger">End Day</button>
+    <button type="submit" name="action" value="summary" class="btn btn-info">Submit Work Summary</button>
+  </form>
+  <div class="mt-4">
+    <h5>Your Attendance Log</h5>
+    <ul class="list-group">
+      {% for log in logs %}
+        <li class="list-group-item">{{ log }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}

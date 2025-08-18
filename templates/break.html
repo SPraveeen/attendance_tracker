@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Breaks - Attendance Tracker{% endblock %}
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/user">User Dashboard</a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="/user/attendance">Attendance</a></li>
+        <li class="nav-item"><a class="nav-link active" href="/user/break">Breaks</a></li>
+        <li class="nav-item"><a class="nav-link" href="/user/photos">My Photos</a></li>
+        <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <h2>Breaks</h2>
+  <form method="POST">
+    <button type="submit" name="action" value="start_break" class="btn btn-warning">Start Break</button>
+    <button type="submit" name="action" value="end_break" class="btn btn-success">End Break</button>
+  </form>
+  <div class="mt-4">
+    <h5>Your Break Log</h5>
+    <ul class="list-group">
+      {% for log in logs %}
+        <li class="list-group-item">{{ log }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}

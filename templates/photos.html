@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}My Photos - Attendance Tracker{% endblock %}
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/user">User Dashboard</a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="/user/attendance">Attendance</a></li>
+        <li class="nav-item"><a class="nav-link" href="/user/break">Breaks</a></li>
+        <li class="nav-item"><a class="nav-link active" href="/user/photos">My Photos</a></li>
+        <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <h2>Upload Your 3 Photos</h2>
+  <form method="POST" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label for="photo1" class="form-label">Photo 1</label>
+      <input class="form-control" type="file" id="photo1" name="photo1" accept="image/*" required>
+    </div>
+    <div class="mb-3">
+      <label for="photo2" class="form-label">Photo 2</label>
+      <input class="form-control" type="file" id="photo2" name="photo2" accept="image/*" required>
+    </div>
+    <div class="mb-3">
+      <label for="photo3" class="form-label">Photo 3</label>
+      <input class="form-control" type="file" id="photo3" name="photo3" accept="image/*" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Upload Photos</button>
+  </form>
+  <div class="mt-4">
+    <h5>Your Uploaded Photos</h5>
+    <div class="row">
+      {% for photo in photos %}
+        <div class="col-4">
+          <img src="{{ url_for('static', filename=photo.replace('\\', '/')) }}" class="img-thumbnail" alt="User Photo">
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
